@@ -38,7 +38,8 @@ jobs:
       - name: 서비스 실행
         run: |
           cd /home/ubuntu/step3
-          git clone https://github.com/moon8sun/docker-project.git
+          echo '운영서버에서 github에 파일 복사해 옴'
+          git clone https://github.com/leemis825/docker-project.git
           cd docker-project/frontend/index.html frontend
           rm -rf docker-project
           docker compose up -d
