@@ -31,7 +31,7 @@ services:
       - DB_PASSWORD=1004
     # 호스트의 './backend' 디렉토리를 컨테이너의 '/app' 디렉토리와 동기화
     volumes:
-      - ./frontend:/usr/share/nginx/html
+      - ./frontend:/usr/share/nginx/html:ro
     depends_on:
       - db # db 서비스가 먼저 시작되도록 의존성 설정
 
