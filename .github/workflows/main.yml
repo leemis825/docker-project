@@ -17,7 +17,8 @@ jobs:
       - name: 소스 파일을 docker이미지로 빌드한다
         run: |
           cd backend
-          docker build -f Dockerfile -t ${{ env.USERNAME }}/backend:latest .
+          docker build -t ${{ env.USERNAME }}/backend:latest .
+          cd ..
 
       - name: docker hub에 로그인 한다. 
         run: docker login -u ${{ env.USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -37,4 +38,7 @@ jobs:
       - name: 서비스 실행
         run: |
           cd /home/ubuntu/step3
+          git clone https://github.com/moon8sun/docker-project.git
+          cd docker-project/frontend/index.html frontend
+          rm -rf docker-project
           docker compose up -d
