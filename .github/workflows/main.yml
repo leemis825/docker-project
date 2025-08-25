@@ -28,10 +28,11 @@ jobs:
         
       - name: 개인키 인증서 파일 생성
         run: |
+          mkdir -p ~/.ssh
           echo ${{ secrets.SSH_KEY }} > ~/.ssh/id_rsa
-          scp ../frontend/index.html ubuntu@3.34.194.189:~/step3/frontend
           chmod 600 ~/.ssh/id_rsa
-
+          ssh-keyscan -t ed25519 >> ~/.ssh/known_host
+          scp ../frontend/index.html ubuntu@3.34.194.189:~/step3/frontend
   deploy:
     needs: build-docker-image
     name: deploy
